@@ -16,6 +16,10 @@ class PlatController extends Controller
     {
         return view('dashboard',['plats'=>Plat::All()]);
     }
+    
+    public function landing(){
+        return view('welcome',['plats'=>Plat::All()]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -43,7 +47,9 @@ class PlatController extends Controller
             'date'=>'required'
 
         ]);
+        // $image_path = $request->file('picture')->store('picture', 'public');
         $data=$request->only(['picture','title','description','date']);
+        $data['picture']= $request->file('picture')->store('picture', 'public');
         Plat::create($data);
         return redirect()->back()->with('success','Plat created successfully!');
 
@@ -57,7 +63,7 @@ class PlatController extends Controller
      */
     public function show($id)
     {
-        // return view('plat.display',['plat'=>Plat::find($id)]); 
+        return view('plat.display',['plat'=>Plat::find($id)]); 
     }
 
     /**
@@ -80,22 +86,44 @@ class PlatController extends Controller
      * @param  \App\Models\Plat  $plat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Plat $plat)
 
-    {
-        $plat=Plat::findorfail($id);
-        $validatedData=$request->validate([
-            'picture'=>'required',
-            'title'=>'bail|required|min:4|max:100',
-            'description'=>'required',
-            'date'=>'required'
+    { 
+        // $plat=Plat::findorfail($id);
+        // $validatedData=$request->validate([
+        //     'picture'=>'required',
+        //     'title'=>'bail|required|min:4|max:100',
+        //     'description'=>'required',
+        //     'date'=>'required'
 
-        ]);
-        $plat->picture=$request->input('picture');
-        $plat->title=$request->input('title');
-        $plat->description=$request->input('description');
-        $plat->date=$request->input('date');
-        $plat->save();
+        // ]);
+        // $plat->picture=$request->file('picture')->store('picture', 'public');
+        // $plat->title=$request->input('title');
+        // $plat->description=$request->input('description');
+        // $plat->date=$request->input('date');
+        // $plat->save();
+        if($request->file('picture')!=null){
+            $validatedData=$request->validate([
+                'picture'=>'required',
+                'title'=>'bail|required|min:4|max:100',
+                'description'=>'required',
+                'date'=>'required'
+    
+            ]);
+            $validatedData['picture']=$request->file('picture')->store('picture', 'public');
+            $plat->update($validatedData);
+        }else{
+            $validatedData=$request->validate([
+                
+                'title'=>'bail|required|min:4|max:100',
+                'description'=>'required',
+                'date'=>'required'
+    
+            ]);
+            $plat->update($validatedData);
+
+        }
+        
         return redirect()->route('plats.index')->with('success','Plat updated successfully!');
 
 
