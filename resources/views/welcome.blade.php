@@ -20,10 +20,23 @@
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
+                /* background-image: url(pictures/foodd.jpg); */
+                /* background-image: url("https://i.pinimg.com/564x/8b/02/19/8b02195669a7ec3ce994ffca485b4267.jpg");
+                
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: 100% 100%; */
+            }
+            .hero{
+                background-image: url("https://i.pinimg.com/564x/8b/02/19/8b02195669a7ec3ce994ffca485b4267.jpg");
+                
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: 100% 100%;
             }
         </style>
     </head>
-    <body class="antialiased">
+    <body class="antialiased" >
         <!-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0"> -->
              <!-- navbar -->
             <!-- @if (Route::has('login'))
@@ -42,16 +55,18 @@
             <!-- navbar -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light ">
             <div class="container-fluid">
-                
-            <a href="{{ url('/dashboard') }}" class="navbar-brand" href="#">Youcode Restau</a>
+            <a href="{{ url('/') }}">
+                        <h1 class="text-dark text-decoration-none fs-5">Youcode Restau</h1> </a>   
+           
             <div >
             @if (Route::has('login'))
             @auth
-               
+            <a href="{{ url('/plats') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
            
                 <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+               
                 
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <form class="d-flex ">
@@ -115,29 +130,34 @@
       </section>
     
         <div class="row mt-3">
+        @foreach ($plats as $plat)
             <div class=" col-lg-4 col-md-6 col-12 col-xl-3 rounded">
             <div class="card m-2 py-2 px-3 shadow shadow-sm">
-              
-              <img src="pictures/menu.jpg" class="rounded img-fluid" height="100"/>
+            <!-- pictures/menu.jpg -->
+            
+              <img src="{{asset('/storage/'.$plat -> picture)}}" class="rounded img-fluid" height="50" width="200"/>
               <div class="card-body">
                 <!-- <h4 class="card-title fw-bold text-truncate">hiiii</h4> -->
                 <div class="fw-bold">
-                <div class="text-dark">title: hiiiiii </div>
-                <div class="card-text text-truncate">Description :hiiisdfghjkljhgf</div>
-                <div class="text-gray">created at:hiiii</div>  
+                <div class="text-dark text-center"><a href="{{Route('plats.show',['plat'=>$plat->id ])}}">{{$plat -> title}}</a> </div>
+                <div class="card-text text-truncate">Description : {{$plat -> description}}</div>
+                <div class="text-gray">created at: {{$plat -> date}}</div>  
                 </div>
                
                 
               </div>
             </div> 
             
-          </div>  
-          <div class=" col-lg-4 col-md-6 col-12 col-xl-3 rounded">
+          </div> 
+          @endforeach
+          
+
+          <!-- <div class=" col-lg-4 col-md-6 col-12 col-xl-3 rounded">
             <div class="card m-2 py-2 px-3 shadow shadow-sm">
               
               <img src="pictures/menu.jpg" class="rounded img-fluid" height="200"/>
               <div class="card-body">
-                <!-- <h4 class="card-title fw-bold text-truncate">hiiii</h4> -->
+                <h4 class="card-title fw-bold text-truncate">hiiii</h4> 
                 <div class="fw-bold">
                 
                   <div class="text-dark">title: hiiiiii </div>
@@ -150,7 +170,8 @@
               </div>
             </div> 
             
-        </div> 
+        </div>  -->
+        
       
       </div>
 
