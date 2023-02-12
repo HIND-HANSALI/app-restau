@@ -1,7 +1,8 @@
 <x-guest-layout>
-    <x-jet-authentication-card>
+    <x-jet-authentication-card class="backfood">
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <!-- <x-jet-authentication-card-logo /> -->
+            <img src="/pictures/foodd.jpg" style="width: 80px;" alt="" srcset="">
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />

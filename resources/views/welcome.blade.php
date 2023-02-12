@@ -28,11 +28,11 @@
                 background-size: 100% 100%; */
             }
             .hero{
-                background-image: url("https://i.pinimg.com/564x/8b/02/19/8b02195669a7ec3ce994ffca485b4267.jpg");
+                background-image: url("https://img.freepik.com/photos-gratuite/vue-dessus-savoureux-sandwich-pita-tranche-shaurma-frites-ketchup-surface-sombre_140725-154955.jpg?w=826&t=st=1676220187~exp=1676220787~hmac=45d752af842ae819af38a3773ffb8c25017abd62814161ff7184c3b0339e089a");
                 
                 background-repeat: no-repeat;
                 background-attachment: fixed;
-                background-size: 100% 100%;
+                background-size: cover ;
             }
         </style>
     </head>
@@ -106,7 +106,7 @@
          <div class="row">
                 <!-- text; -->
                 <div class="col-md-6  h-100 justify-content-center">
-                    <div class="text fs-1 fw-bolder lh-lg">
+                    <div class="text-white fs-1 fw-bolder lh-lg">
                        A world of spices and colours,sizzles and smells of secret recipes
                     </div>
                     <div class="buttons pt-2">
