@@ -110,7 +110,11 @@
                 </tbody>
 
             </table>
+           
         </div>
+        <div class="d-flex justify-content-center">
+                {{ $plats->links() }}
+            </div>
     </div>
     <!-- Plat Modal -->
     <div class="modal fade" id="platModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
