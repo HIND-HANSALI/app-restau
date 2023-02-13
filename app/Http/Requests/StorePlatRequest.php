@@ -13,7 +13,7 @@ class StorePlatRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StorePlatRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'picture'=>'required',
+            'title'=>'bail|required|min:4|max:100',
+            'description'=>'required',
+            'date'=>'required'
         ];
     }
 }
